@@ -1,7 +1,4 @@
-"use client";
-
 import { QRCodeCanvas } from "qrcode.react";
-import { env } from "../../../config";
 
 export const QRPage = () => {
   return (
