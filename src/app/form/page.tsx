@@ -19,7 +19,7 @@ const Form = () => {
   }, []);
 
   const onClick = useCallback(
-    (e) => {
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault();
 
       if (pw !== PASSWORD) {
