@@ -3,13 +3,13 @@ type ClientConfig = {
   PHONE_NUMBER: string;
 };
 
-function getEnv(name: string): string {
-  const value = process.env[name];
-  if (!value) {
-    throw new Error(`Missing required env variable: ${name}`);
-  }
-  return value;
-}
+// function getEnv(name: string): string {
+//   const value = process.env[name];
+//   if (!value) {
+//     throw new Error(`Missing required env variable: ${name}`);
+//   }
+//   return value;
+// }
 
 export function getClientConfig(): ClientConfig {
   const PASSWORD = process.env.NEXT_PUBLIC_PASSWORD;
@@ -25,7 +25,7 @@ export function getClientConfig(): ClientConfig {
   };
 }
 
-export const env = {
-  PORT: getEnv('PORT'),
-  ENV: getEnv('ENV'),
-};
+// export const env = {
+//   PORT: getEnv('PORT'),
+//   ENV: getEnv('ENV'),
+// };
