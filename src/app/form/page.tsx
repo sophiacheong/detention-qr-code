@@ -1,9 +1,9 @@
 "use client";
 import { useCallback, useState } from "react";
 import styles from "../page.module.css";
-import { env } from "../../../config";
+import { getClientConfig } from "../../../config";
 
-const { PASSWORD, PHONE_NUMBER } = env;
+const { PASSWORD, PHONE_NUMBER } = getClientConfig();
 
 const Form = () => {
   const [name, setName] = useState<string>("");

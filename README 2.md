@@ -1,1 +1,0 @@
-# detention-qr-code
