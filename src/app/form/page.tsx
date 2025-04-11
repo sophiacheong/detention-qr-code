@@ -20,7 +20,7 @@ const Form = () => {
   }, []);
 
   const onClick = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault();
 
       if (pw !== PASSWORD) {
@@ -31,8 +31,14 @@ const Form = () => {
       try {
         setInvalid(false);
 
-        const body = encodeURIComponent(`${name} is here!`);
-        window.location.href = `sms:+${PHONE_NUMBER}?body=${body}`;
+        await fetch("/api/send-sms", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            to: PHONE_NUMBER,
+            message: `${name} is here!`,
+          }),
+        });
 
         setPw("");
         setName("");
