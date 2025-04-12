@@ -31,14 +31,12 @@ const Form = () => {
       try {
         setInvalid(false);
 
-        await fetch("/api/send-sms", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            to: PHONE_NUMBER,
-            message: `${name} is here!`,
-          }),
-        });
+        // Create the SMS link dynamically
+        const smsLink = `sms:${PHONE_NUMBER}?body=${encodeURIComponent(
+          `${name} is here!`
+        )}`;
+
+        window.location.href = smsLink;
 
         setPw("");
         setName("");
