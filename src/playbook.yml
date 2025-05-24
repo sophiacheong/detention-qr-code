@@ -1,0 +1,18 @@
+- name: Generate .env file with SSM values
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    detention_password: "{{ lookup('aws_ssm', 'detention_password', region='us-west-2') }}"
+    detention_phone: "{{ lookup('aws_ssm', 'detention_phone', region='us-west-2') }}"
+  tasks:
+    - name: Create .env file from template
+      template:
+        src: env.j2
+        dest: ./output.env
+
+- name: Fetch SSM parameter
+  hosts: localhost
+  vars:
+    aws_region: us-east-2
+    db_url: "{{ lookup('community.aws.ssm', '/my/parameter/db_url', region=aws_region) }}"
