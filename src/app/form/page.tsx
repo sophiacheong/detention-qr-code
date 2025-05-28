@@ -5,8 +5,10 @@ import styles from "../page.module.css";
 import clsx from "clsx";
 import { getClientConfig } from "../../../config";
 import { ToastContainer, toast } from "react-toastify";
+import { sendSms } from "@/helper/sendSms";
 
-const { PASSWORD, PHONE_NUMBER } = getClientConfig();
+const { PASSWORD, PHONE_NUMBER, PHONE_NUMBER_2, PHONE_NUMBER_3 } =
+  getClientConfig();
 
 const Form = () => {
   const [name, setName] = useState<string>("");
@@ -31,12 +33,10 @@ const Form = () => {
       try {
         setInvalid(false);
 
-        // Create the SMS link dynamically
-        const smsLink = `sms:${PHONE_NUMBER}?body=${encodeURIComponent(
+        sendSms(
+          [PHONE_NUMBER, PHONE_NUMBER_2, PHONE_NUMBER_3],
           `${name} is here!`
-        )}`;
-
-        window.location.href = smsLink;
+        );
 
         setPw("");
         setName("");
