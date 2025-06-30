@@ -12,9 +12,3 @@
       template:
         src: env.j2
         dest: ./output.env
-
-- name: Fetch SSM parameter
-  hosts: localhost
-  vars:
-    aws_region: us-east-2
-    db_url: "{{ lookup('community.aws.ssm', '/my/parameter/db_url', region=aws_region) }}"

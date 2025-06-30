@@ -3,12 +3,13 @@
 import { useCallback, useEffect, useState } from "react";
 import styles from "../page.module.css";
 import clsx from "clsx";
-import { getClientConfig } from "../../../config";
 import { ToastContainer, toast } from "react-toastify";
-import { sendSms } from "@/helper/sendSms";
+import dotenv from "dotenv";
 
-const { PASSWORD, PHONE_NUMBER, PHONE_NUMBER_2, PHONE_NUMBER_3 } =
-  getClientConfig();
+dotenv.config();
+
+const PASSWORD = process.env.NEXT_PUBLIC_PASSWORD;
+const PHONE_NUMBER = process.env.NEXT_PUBLIC_PHONE_NUMBER;
 
 const Form = () => {
   const [name, setName] = useState<string>("");
@@ -26,22 +27,22 @@ const Form = () => {
       e.preventDefault();
 
       if (pw !== PASSWORD) {
+        console.log(pw, PASSWORD);
         setInvalid(true);
         return;
       }
 
       try {
         setInvalid(false);
+        const smsLink = `sms:${PHONE_NUMBER}?body=${`${name} is here!`}`;
 
-        sendSms(
-          [PHONE_NUMBER, PHONE_NUMBER_2, PHONE_NUMBER_3],
-          `${name} is here!`
-        );
+        window.location.href = smsLink;
 
         setPw("");
         setName("");
         toast.success(`Confirmation has been sent!`);
       } catch (e) {
+        console.log(e);
         toast.error(`Error sending message - Please try again: ${e}`);
       }
     },
