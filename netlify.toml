@@ -1,7 +1,7 @@
 [build]
-command = "docker build -t ansible-runner ./deploy && docker run --rm \
-  -e MY_AWS_ACCESS_KEY_ID=$MY_AWS_ACCESS_KEY_ID \
-  -e MY_AWS_SECRET_ACCESS_KEY=$MY_AWS_SECRET_ACCESS_KEY \
-  -e MY_AWS_REGION=$MY_AWS_REGION \
+command = "docker build -t ansible-runner ./deploy && docker run --rm
+  -e MY_AWS_ACCESS_KEY_ID=$MY_AWS_ACCESS_KEY_ID
+  -e MY_AWS_SECRET_ACCESS_KEY=$MY_AWS_SECRET_ACCESS_KEY
+  -e MY_AWS_REGION=$MY_AWS_REGION
   ansible-runner"
 publish = ".next"
