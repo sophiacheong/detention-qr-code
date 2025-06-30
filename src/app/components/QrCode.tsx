@@ -7,7 +7,7 @@ export const QRPage = () => {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      setUrl(`${window.location.origin}/form`);
+      setUrl(`${window.location.origin}`);
     }
   }, []);
 
