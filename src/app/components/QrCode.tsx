@@ -1,3 +1,4 @@
+"use client";
 import { QRCodeCanvas } from "qrcode.react";
 
 export const QRPage = () => {
