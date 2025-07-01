@@ -2,11 +2,7 @@ services:
   - type: web
     name: myapp
     env: docker
-    buildCommand: docker build \
-      --build-arg AWS_ACCESS_KEY_ID \
-      --build-arg AWS_SECRET_ACCESS_KEY \
-      --build-arg AWS_REGION \
-      -t myapp .
+    dockerfilePath: Dockerfile
 
     envVars:
       - key: AWS_ACCESS_KEY_ID
