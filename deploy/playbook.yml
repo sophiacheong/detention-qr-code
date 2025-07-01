@@ -4,7 +4,7 @@
   gather_facts: no
   vars:
     detention_password: "{{ lookup('aws_ssm', 'detention_password', region='us-east-2') }}"
-    detention_phone: "{{ lookup('aws_ssm', 'detention_phone', region='us-east-2') }}"
+    detention_phone: "{{ lookup('aws_ssm', 'detention_phone', region='east-2') }}"
     detention_phone_2: "{{ lookup('aws_ssm', 'detention_phone_2', region='us-east-2') }}"
     detention_phone_3: "{{ lookup('aws_ssm', 'detention_phone_3', region='us-east-2') }}"
   tasks:
