@@ -26,13 +26,12 @@ const Form = () => {
     async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault();
 
-      if (pw !== PASSWORD) {
-        console.log(pw, PASSWORD);
-        setInvalid(true);
-        return;
-      }
-
       try {
+        if (pw !== PASSWORD) {
+          setInvalid(true);
+          throw new Error("Incorrect password!");
+        }
+
         setInvalid(false);
         const smsLink = `sms:${PHONE_NUMBER}?body=${`${name} is here!`}`;
 
@@ -43,7 +42,7 @@ const Form = () => {
         toast.success(`Confirmation has been sent!`);
       } catch (e) {
         console.log(e);
-        toast.error(`Error sending message - Please try again: ${e}`);
+        toast.error(`Please try again. ${e}`);
       }
     },
     [name, pw]
