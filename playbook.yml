@@ -6,11 +6,11 @@
     detention_password: "{{ lookup('aws_ssm', 'detention_password', region='us-east-2') }}"
     detention_phone: "{{ lookup('aws_ssm', 'detention_phone', region='us-east-2') }}"
   tasks:
-    - name: Create .env file
+    - name: Debug password fetched from SSM
+      debug:
+        msg: "detention_password is {{ detention_password }}"
+
+    - name: Create .env file from template
       template:
         src: env.j2
         dest: ./output.env
-
-- name: Debug password fetched from SSM
-  debug:
-    msg: "detention_password is {{ detention_password }}"
