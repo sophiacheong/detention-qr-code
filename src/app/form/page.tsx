@@ -41,7 +41,7 @@ const Form = () => {
         toast.success(`Confirmation has been sent!`);
       } catch (e) {
         setInvalid(true);
-        console.log(e);
+        console.log(e, PASSWORD);
         toast.error(`Please try again. ${e}`);
       }
     },
