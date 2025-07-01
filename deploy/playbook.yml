@@ -10,3 +10,7 @@
       template:
         src: env.j2
         dest: ./output.env
+
+- name: Debug password fetched from SSM
+  debug:
+    msg: "detention_password is {{ detention_password }}"

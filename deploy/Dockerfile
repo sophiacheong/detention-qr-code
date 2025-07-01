@@ -14,7 +14,9 @@ WORKDIR /app
 
 COPY . .
 
+RUN echo "AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" && echo "AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" && echo "AWS_REGION=$AWS_REGION"
 RUN ansible-playbook playbook.yml
+RUN cat output.env
 
 COPY output.env .env
 
