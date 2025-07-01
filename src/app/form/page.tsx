@@ -28,7 +28,6 @@ const Form = () => {
 
       try {
         if (pw !== PASSWORD) {
-          setInvalid(true);
           throw new Error("Incorrect password!");
         }
 
@@ -41,6 +40,7 @@ const Form = () => {
         setName("");
         toast.success(`Confirmation has been sent!`);
       } catch (e) {
+        setInvalid(true);
         console.log(e);
         toast.error(`Please try again. ${e}`);
       }
