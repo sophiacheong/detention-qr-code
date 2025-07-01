@@ -5,7 +5,7 @@ module.exports = {
   darkMode: 'media',
   plugins: [],
   content: [
-    './src/app/**/*.{js,ts,jsx,tsx}', // If you are using the app router
+    './src/app/**/*.{js,ts,jsx,tsx}',
     './src/app/*.{js,ts,jsx,tsx}'
   ],
 }
