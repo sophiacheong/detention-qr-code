@@ -4,6 +4,7 @@ import { FormEvent, useCallback, useEffect, useState } from "react";
 import styles from "../page.module.css";
 import clsx from "clsx";
 import { ToastContainer, toast } from "react-toastify";
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -41,8 +42,7 @@ const Form = () => {
         toast.success(`Confirmation has been sent!`);
       } catch (e) {
         setInvalid(true);
-        console.log(e, PASSWORD);
-        toast.error(`Please try again. ${e}`);
+        console.log(e);
       }
     },
     [name, pw]
@@ -95,6 +95,12 @@ const Form = () => {
             onChange={(e) => setPw(e.target.value)}
             value={pw}
           />
+          {invalid && (
+            <p className="mt-1 text-sm text-red-600">
+              <WarningAmberIcon fontSize="small" /> Password is incorrect.
+              Please try again.
+            </p>
+          )}
         </div>
 
         <button
@@ -113,9 +119,14 @@ const Form = () => {
         closeOnClick={false}
         rtl={false}
         pauseOnFocusLoss
-        draggable
+        draggable={false}
         pauseOnHover
         theme={isDark ? "dark" : "light"}
+        toastStyle={{
+          fontSize: "text-sm",
+          maxWidth: "90vw",
+          wordBreak: "break-word",
+        }}
       />
     </div>
   );
