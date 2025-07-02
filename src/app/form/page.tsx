@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { FormEvent, useCallback, useEffect, useState } from "react";
 import styles from "../page.module.css";
 import clsx from "clsx";
 import { ToastContainer, toast } from "react-toastify";
@@ -22,8 +22,8 @@ const Form = () => {
     setIsDark(dark);
   }, []);
 
-  const onClick = useCallback(
-    async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onSubmit = useCallback(
+    async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
       try {
@@ -50,7 +50,7 @@ const Form = () => {
 
   return (
     <div className={styles.page}>
-      <form className="max-w-sm mx-auto">
+      <form className="max-w-sm mx-auto" onSubmit={onSubmit}>
         <div className="mb-5">
           <label
             htmlFor="full-name"
@@ -100,7 +100,6 @@ const Form = () => {
         <button
           type="submit"
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          onClick={onClick}
         >
           Submit
         </button>
