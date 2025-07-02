@@ -113,9 +113,14 @@ const Form = () => {
         closeOnClick={false}
         rtl={false}
         pauseOnFocusLoss
-        draggable
+        draggable={false}
         pauseOnHover
         theme={isDark ? "dark" : "light"}
+        toastStyle={{
+          fontSize: "text-sm",
+          maxWidth: "90vw",
+          wordBreak: "break-word",
+        }}
       />
     </div>
   );
