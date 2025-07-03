@@ -26,9 +26,10 @@ const Form = () => {
   const onSubmit = useCallback(
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+      const passwords = PASSWORD?.split(",");
 
       try {
-        if (pw !== PASSWORD) {
+        if (!passwords?.some((pass) => pass === pw)) {
           throw new Error("Incorrect password!");
         }
 
