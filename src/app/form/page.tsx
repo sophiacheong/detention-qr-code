@@ -5,6 +5,8 @@ import styles from "../page.module.css";
 import clsx from "clsx";
 import { ToastContainer, toast } from "react-toastify";
 import WarningAmberIcon from "@mui/icons-material/WarningAmber";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -17,6 +19,7 @@ const Form = () => {
   const [pw, setPw] = useState<string>("");
   const [invalid, setInvalid] = useState<boolean>(false);
   const [isDark, setIsDark] = useState(false);
+  const [showPw, setShowPw] = useState<boolean>(false)
 
   useEffect(() => {
     const dark = document.documentElement.classList.contains("dark");
@@ -81,21 +84,33 @@ const Form = () => {
           >
             Password
           </label>
-          <input
-            type="password"
-            id="password"
-            className={clsx(
-              "bg-gray-50 text-gray-900 text-sm rounded-lg block w-full p-2.5",
-              "dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white",
-              invalid
-                ? "border-red-400 ring ring-red-500 focus:ring-red-500 focus:border-red-500 dark:ring-red-400 dark:border-red-400 dark:focus:ring-red-400 dark:focus:border-red-400"
-                : "border-gray-300 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-            )}
-            autoComplete="on"
-            required
-            onChange={(e) => setPw(e.target.value)}
-            value={pw}
-          />
+
+          <div className="relative">
+            <input
+              type={showPw ? "text" : "password"}
+              id="password"
+              className={clsx(
+                "bg-gray-50 text-gray-900 text-sm rounded-lg block w-full p-2.5",
+                "dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white",
+                invalid
+                  ? "border-red-400 ring ring-red-500 focus:ring-red-500 focus:border-red-500 dark:ring-red-400 dark:border-red-400 dark:focus:ring-red-400 dark:focus:border-red-400"
+                  : "border-gray-300 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+              )}
+              autoComplete="on"
+              required
+              onChange={(e) => setPw(e.target.value)}
+              value={pw}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPw(!showPw)}
+              className="absolute inset-y-0 right-2 flex items-center px-2 text-gray-500 hover:text-gray-700 dark:hover:text-white"
+            >
+              {showPw ? <VisibilityIcon fontSize="small" /> : <VisibilityOffIcon fontSize="small" />}
+            </button>
+          </div>
+
+
           {invalid && (
             <p className="mt-1 text-sm text-red-600">
               <WarningAmberIcon fontSize="small" /> Password is incorrect.
